@@ -14,6 +14,7 @@ package rpc
 import (
 	"eosgo-client/model"
 	"eosgo-client/errors"
+	"eosgo-client/common"
 )
 
 /**
@@ -52,10 +53,10 @@ func ContractNewAccount(creator string, accountName string, ownerKey string, act
 	recoveryAuthority := model.NewAuthority(recoveryKey, 1)
 
 	action := model.Action{
-		"eosio",
-		"eosio",
+		common.Config.NODE_NAME,
+		common.Config.NODE_NAME,
 		"newaccount",
-		[]string{"eosio", creator},
+		[]string{common.Config.NODE_NAME, creator},
 		[]model.Authorization{auth},
 		"",
 		map[string]interface{}{
@@ -68,8 +69,8 @@ func ContractNewAccount(creator string, accountName string, ownerKey string, act
 	}
 
 	trx := model.Transaction{
-		49344,
-		4171690928,
+		0,
+		0,
 		0,
 		"",
 		[]string{},
@@ -90,7 +91,7 @@ func ContractNewAccount(creator string, accountName string, ownerKey string, act
 	}
 
 	//right call
-	trxPushed, err := ChainPushTransaction(trx, []string{"EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV"}, "")
+	trxPushed, err := ChainPushTransaction(trx, []string{common.Config.NODE_PUB_KEY}, "")
 
 	if err != nil {
 		return nil, err
