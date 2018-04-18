@@ -1,0 +1,19 @@
+package: eosgo-client
+import:
+- package: github.com/fatih/structs
+- package: github.com/gorilla/mux
+- package: github.com/gorilla/sessions
+- package: github.com/keighl/postmark
+- package: github.com/mvdan/xurls
+- package: github.com/rs/zerolog
+  subpackages:
+  - log
+- package: github.com/satori/go.uuid
+  subpackages:
+  - account
+  - charge
+  - client
+  - customer
+- package: gopkg.in/square/go-jose.v2
+  subpackages:
+  - jwt
