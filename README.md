@@ -39,8 +39,3 @@ It wraps the nodeos RPC API and will offer a high level set of API to simplify t
 
 *EOSIO contracts* (see rpc/contracts.go)
 - newaccount
-
-### Releases ###
-
-- v0.0.2: implements standalone test cases and more contracts (soon)
-- v0.0.1: fully functional wrapper of nodeos RPC API, see https://eosio.github.io/eos/group__eosiorpc.html for complete specs
