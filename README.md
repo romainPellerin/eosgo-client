@@ -9,7 +9,7 @@ It wraps the nodeos RPC API and will offer a high level set of API to simplify t
 ### Releases ###
 
 - v0.0.2: implements standalone test cases and more contracts (soon)
-- v0.0.1: fully functional wrapper of nodeos RPC API, see https://eosio.github.io/eos/group__eosiorpc.html for complete specs
+- v0.0.1: fully functional wrapper of nodeos RPC API, see https://eosio.github.io/eos/group__eosiorpc.html for detailed specs
 
 ### Current features ###
 
@@ -39,3 +39,20 @@ It wraps the nodeos RPC API and will offer a high level set of API to simplify t
 
 *EOSIO contracts* (see rpc/contracts.go)
 - newaccount
+
+### How to start ###
+
+Take a look at rpc/chain_test.go, rpc/wallet_test.go and rpc/contracts_test.go. You will have to manually create some accounts to be able to run it.
+
+Also, you have to create 2 environment vars in order to load your conf file (see default.conf), in your system:
+```
+export EOSGO_PATH=/your_path/eosgo-client/.
+export EOSGO_CONF=default
+```
+or for your IDE (here for a Goland project):
+```
+EOSGO_PATH=.;EOSGO_CONF=test
+```
+
+Currently working on standalone tests.
+
