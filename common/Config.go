@@ -19,7 +19,10 @@ import (
 )
 
 type Configuration struct {
-	ENV_EOSGO_PATH               string
+	NODE_PRODUCER_NAME			 string
+	NODE_PUB_KEY				 string
+	ENV_EOS_SRC_PATH			 string
+	ENV_EOSGO_PATH				 string
 	API_PORT                     int
 	API_URL                      string
 	API_METHOD                   string

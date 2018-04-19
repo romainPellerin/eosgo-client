@@ -75,6 +75,9 @@ func Get(_url string, _params map[string]string) ([]byte, *errors.AppError) {
 // by default bytes will be overided if keyValues is passed
 func Post(url string, keyValues map[string]interface{}, bytes []byte) ([]byte, *errors.AppError) {
 
+	fmt.Println("post keyValues: ",keyValues)
+	fmt.Println("post raw: "+string(bytes))
+
 	var err error
 
 	if keyValues != nil {
@@ -117,6 +120,11 @@ func Post(url string, keyValues map[string]interface{}, bytes []byte) ([]byte, *
 func PostRawData(url string, raw string) ([]byte, *errors.AppError) {
 
 	fmt.Println("post raw data: " + raw)
+
+	// force quotes if not json or array object
+	if !strings.HasPrefix(raw,"\"") && !strings.HasPrefix(raw,"{") && !strings.HasPrefix(raw,"[") {
+		raw = "\""+raw+"\""
+	}
 
 	req, _ := http.NewRequest("POST", url, strings.NewReader(raw))
 

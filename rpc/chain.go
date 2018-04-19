@@ -122,6 +122,7 @@ func ChainGetTableRows(scope string, code string, table string, toJSON bool, low
 	}
 
 	params := map[string]interface{}{
+		"table": table,
 		"scope":scope,
 		"code":code,
 		"json": _toJSON,

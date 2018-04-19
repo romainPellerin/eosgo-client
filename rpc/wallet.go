@@ -40,6 +40,7 @@ import (
 
 func WalletCreate(name string) (string, *errors.AppError) {
 
+
 	data, err := network.PostRawData(common.EOS_URL+"/v1/wallet/create", name)
 
 	if err != nil {
@@ -103,7 +104,7 @@ func WalletLockAll() (*errors.AppError) {
 
 func WalletImportKey(name string, privKey string) (*errors.AppError) {
 
-	_, err := network.PostRawData(common.EOS_URL+"/v1/wallet/import_key", "["+name+","+privKey+"]")
+	_, err := network.PostRawData(common.EOS_URL+"/v1/wallet/import_key", "[\""+name+"\",\""+privKey+"\"]")
 
 	if err != nil {
 		return err

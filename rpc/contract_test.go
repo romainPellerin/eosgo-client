@@ -50,13 +50,22 @@ func TContractConfig() {
 func TestContractNewAccount(t *testing.T) {
 
 	if common.Config.API_URL == "" {
-		TChainConfig()
+		TContractConfig()
 	}
 
-	trx, err := ContractNewAccount("eosio", "accountce", "EOS6pd6CJKjWGc5wH4P3vBR1Eh8FvbyjexXeL2pJXvJpG761kQBLa", "", "")
+	account := common.ToolsAccountGenerateName("eosgoeosgo")
+
+	fmt.Println("account: "+account)
+
+	trx, err := ContractNewAccount(common.Config.NODE_PRODUCER_NAME, account, common.Config.NODE_PUB_KEY, "", "")
 
 	if err != nil {
 		fmt.Println("err: ", err)
+	}
+
+	if err != nil {
+		fmt.Println("err: ", err)
+		t.FailNow()
 	}
 
 	assert.Nil(t, err, "test get error")

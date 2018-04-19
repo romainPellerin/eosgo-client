@@ -8,7 +8,8 @@ It wraps the nodeos RPC API and will offer a high level set of API to simplify t
 
 ### Releases ###
 
-- v0.0.2: implements standalone test cases and more contracts (soon)
+- v0.0.3: implement more eosio contracts (soon)
+- v0.0.2: implements standalone test cases
 - v0.0.1: fully functional wrapper of nodeos RPC API, see https://eosio.github.io/eos/group__eosiorpc.html for detailed specs
 
 ### Current features ###
@@ -41,6 +42,22 @@ It wraps the nodeos RPC API and will offer a high level set of API to simplify t
 - newaccount
 
 ### How to start ###
+
+Configure your own conf file (for exemple *test.conf*) based on *default.conf* one with
+```
+    "NODE_PRODUCER_NAME":"eosio",               // see eosio/config.ini file, default is eosio
+    "NODE_PUB_KEY":"KEY",                       // see eosio/config.ini file,
+    "ENV_EOS_SRC_PATH":"YOURPATH/eos",		    // path to your EOS source folder
+    "ENV_EOSGO_PATH":"YOURPATH/eosgo-client",   // path to this eosgo-client project
+    "API_PORT": 8888,                           // nodeos PORT
+    "API_URL": "localhost",                     // nodeos URL
+    "API_METHOD": "http",                       // https or https
+    "LOGGING_MODE": "STDOUT",                   // STDOUT or SYSLOG
+    "LOGGING_LEVEL": "debug",                   // debug, info or error
+    "WALLET_NAME":"NAME",                       // your wallet name
+    "WALLET_PRIV_KEY":"KEY"                     // your wallet private key
+    "TRANSACTION_EXPIRATION_DELAY":30           // default 30 seconds
+```
 
 Take a look at rpc/chain_test.go, rpc/wallet_test.go and rpc/contracts_test.go. You will have to manually create some accounts to be able to run it.
 

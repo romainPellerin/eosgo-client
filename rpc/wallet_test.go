@@ -18,7 +18,6 @@ import (
 	"os"
 	"eosgo-client/common"
 	"time"
-	"strconv"
 	"eosgo-client/model"
 	"eosgo-client/errors"
 )
@@ -62,7 +61,7 @@ func TestWalletCreate(t *testing.T) {
 		TWalletConfig()
 	}
 
-	wallet = "test" + strconv.Itoa(int(time.Now().Unix()))
+	wallet = common.ToolsWalletGenerateName("eosgowallet")
 
 	priv_key, err := WalletCreate(wallet)
 
@@ -224,23 +223,23 @@ func TestWalletSignTransaction(t *testing.T) {
 	}
 
 	auth := model.Authorization{
-		"eow",
+		common.Config.NODE_PRODUCER_NAME,
 		"active",
 	}
 
 	action := model.Action{
-		"eow",
-		"token",
+		common.Config.NODE_PRODUCER_NAME,
+		common.Config.NODE_PRODUCER_NAME,
 		"issue",
-		[]string{"token", "accountbe"},
+		[]string{common.Config.NODE_PRODUCER_NAME, "eosgo"},
 		[]model.Authorization{auth},
 		"",
-		map[string]interface{}{"to": "accountbe", "quantity": "2.0001 EOS", "memo": ""},
+		map[string]interface{}{"to": "eosgo", "quantity": "2.0001 EOS", "memo": ""},
 	}
 
 	trx := model.Transaction{
-		49344,
-		4171690928,
+		0,
+		0,
 		0,
 		"",
 		[]string{},
@@ -265,7 +264,7 @@ func TestWalletSignTransaction(t *testing.T) {
 	fmt.Println("time:", trx.Expiration)
 
 	// sign transaction
-	trxUpdated, err := WalletSignTransaction(trx, []string{"EOS7gzcNK4rbvhHRzjar4D5zM9CEw4db7gCXg9CXyVwa21wVb9JGn"}, "")
+	trxUpdated, err := WalletSignTransaction(trx, []string{common.Config.NODE_PUB_KEY}, "")
 
 	fmt.Println("err: ", err)
 	assert.Nil(t, err, "test get error")

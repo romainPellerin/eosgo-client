@@ -44,16 +44,13 @@ func TChainConfig() {
 	common.LoggerInit("debug")
 }
 
-// TODO: the following tests require to manually create accounts and keys
-// TODO: some keys are hardcoded
-// TODO: it will soon be updated to be standalone
-
 func TestChainGetInfo(t *testing.T) {
 
 	if common.Config.API_URL == "" {
 		TChainConfig()
 	}
 
+	//right call
 	chainInfo, err := ChainGetInfo()
 
 	fmt.Println("err: ", err)
@@ -71,6 +68,7 @@ func TestChainGetBlock(t *testing.T) {
 		TChainConfig()
 	}
 
+	//right call
 	block, err := ChainGetBlock("1")
 
 	fmt.Println("err: ", err)
@@ -89,7 +87,8 @@ func TestChainGetAccount(t *testing.T) {
 		TChainConfig()
 	}
 
-	account, err := ChainGetAccount("token")
+	//right call
+	account, err := ChainGetAccount(common.Config.NODE_PRODUCER_NAME)
 
 	fmt.Println("err: ", err)
 	assert.Nil(t, err, "test get error")
@@ -107,7 +106,8 @@ func TestChainGetCode(t *testing.T) {
 		TChainConfig()
 	}
 
-	code, err := ChainGetCode("token")
+	//right call
+	code, err := ChainGetCode(common.Config.NODE_PRODUCER_NAME)
 
 	fmt.Println("err: ", err)
 	assert.Nil(t, err, "test get error")
@@ -118,13 +118,16 @@ func TestChainGetCode(t *testing.T) {
 	fmt.Println("code.CodeHash: ", code.CodeHash)
 }
 
+// TODO: try with another contract than currency which is kind of managed in another way by nodeos
+// this require to create eosio account
 func TestChainGetTableRows(t *testing.T) {
 
 	if common.Config.API_URL == "" {
 		TChainConfig()
 	}
 
-	tableRows, err := ChainGetTableRows("token", "token", "stat", true, -1, -1, -1)
+	//right call
+	tableRows, err := ChainGetTableRows(common.Config.NODE_PRODUCER_NAME, common.Config.NODE_PRODUCER_NAME, "accounts", true, -1, -1, -1)
 
 	fmt.Println("err: ", err)
 	assert.Nil(t, err, "test get error")
@@ -137,6 +140,8 @@ func TestChainGetTableRows(t *testing.T) {
 	}
 }
 
+// TODO: try with another contract than currency which is kind of managed in another way by nodeos
+// this require to create eosio account
 func TestChainAbi(t *testing.T) {
 
 	if common.Config.API_URL == "" {
@@ -144,11 +149,12 @@ func TestChainAbi(t *testing.T) {
 	}
 
 	abiJSON := model.AbiJSON{
-		"token",
+		common.Config.NODE_PRODUCER_NAME,
 		"issue",
-		map[string]interface{}{"to": "accountbe", "quantity": "2.0001 EOS", "memo": "just a coin"},
+		map[string]interface{}{"to": common.ToolsAccountGenerateName("eosgoeosgo"), "quantity": "2.0001 EOS", "memo": "just a coin"},
 	}
 
+	//right call
 	abi, err := ChainAbiJSONToBin(&abiJSON)
 
 	fmt.Println("err: ", err)
@@ -190,24 +196,35 @@ func TestChainPushTransaction(t *testing.T) {
 		TChainConfig()
 	}
 
+	account := common.ToolsAccountGenerateName("eosgo")
+
+	fmt.Println("account name generated: " + account)
+
+	_, err := ContractNewAccount(common.Config.NODE_PRODUCER_NAME, account, common.Config.NODE_PUB_KEY, "", "")
+
+	if err != nil {
+		fmt.Println("err: ", err)
+		t.FailNow()
+	}
+
 	auth := model.Authorization{
-		"eow",
+		common.Config.NODE_PRODUCER_NAME,
 		"active",
 	}
 
 	action := model.Action{
-		"eow",
-		"token",
+		common.Config.NODE_PRODUCER_NAME,
+		common.Config.NODE_PRODUCER_NAME,
 		"issue",
-		[]string{"token", "accountbe"},
+		[]string{common.Config.NODE_PRODUCER_NAME, account},
 		[]model.Authorization{auth},
 		"",
-		map[string]interface{}{"to": "accountbe", "quantity": "2.0001 EOS", "memo": ""},
+		map[string]interface{}{"to": account, "quantity": "2.0001 EOS", "memo": "just 2 coins"},
 	}
 
 	trx := model.Transaction{
-		49344,
-		4171690928,
+		0,
+		0,
 		0,
 		"",
 		[]string{},
@@ -227,7 +244,8 @@ func TestChainPushTransaction(t *testing.T) {
 		[]model.Action{},
 	}
 
-	trxPushed, err := ChainPushTransaction(trx, []string{"EOS7gzcNK4rbvhHRzjar4D5zM9CEw4db7gCXg9CXyVwa21wVb9JGn"}, "")
+	//right call
+	trxPushed, err := ChainPushTransaction(trx, []string{common.Config.NODE_PUB_KEY}, "")
 
 	// check required keys
 

@@ -18,19 +18,9 @@ import (
 )
 
 /**
-	See if you have EOS source {$EOS_SOURCE}/docs/group__eosiorpc.html#chainrpc for detailed specs of:
-	or download from https://eosio.github.io/eos/group__eosiorpc.html
-	- GetInfo
-	- GetBlock
-	- GetAccount
-	- GetCode
-	- GetTableRows
-	- AbiJSONToBin
-	- AbiBinToJSON
-	- PushTransaction
-	- //TODO: PushTransactions
-	- GetRequiredKeys
-
+  The following methods are implementing low level contracts that you can control with EOS CLI (cleos):
+	- newaccount: cleos create account
+	- //TODO: setcontract: cleos set contract
  */
 
 func ContractNewAccount(creator string, accountName string, ownerKey string, activeKey string, recoveryKey string) (*model.Transaction, *errors.AppError) {
@@ -44,7 +34,7 @@ func ContractNewAccount(creator string, accountName string, ownerKey string, act
 	}
 
 	auth := model.Authorization{
-		"eosio",
+		common.Config.NODE_PRODUCER_NAME,
 		"active",
 	}
 
@@ -53,10 +43,10 @@ func ContractNewAccount(creator string, accountName string, ownerKey string, act
 	recoveryAuthority := model.NewAuthority(recoveryKey, 1)
 
 	action := model.Action{
-		common.Config.NODE_NAME,
-		common.Config.NODE_NAME,
+		common.Config.NODE_PRODUCER_NAME,
+		common.Config.NODE_PRODUCER_NAME,
 		"newaccount",
-		[]string{common.Config.NODE_NAME, creator},
+		[]string{common.Config.NODE_PRODUCER_NAME, creator},
 		[]model.Authorization{auth},
 		"",
 		map[string]interface{}{
