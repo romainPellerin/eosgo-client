@@ -43,10 +43,6 @@ func TContractConfig() {
 	common.LoggerInit("debug")
 }
 
-// TODO: these tests require to manually create accounts and keys
-// TODO: some keys are hardcoded
-// TODO: it will soon be updated to be standalone
-
 func TestContractNewAccount(t *testing.T) {
 
 	if common.Config.API_URL == "" {

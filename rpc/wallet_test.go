@@ -212,10 +212,6 @@ func TestWalletSetTimeout(t *testing.T) {
 	assert.Nil(t, err, "test get error")
 }
 
-// TODO: the following test requires to manually create accounts and keys
-// TODO: some keys are hardcoded
-// TODO: it will soon be updated to be standalone
-
 func TestWalletSignTransaction(t *testing.T) {
 
 	if common.Config.API_URL == "" {

@@ -140,8 +140,6 @@ func TestChainGetTableRows(t *testing.T) {
 	}
 }
 
-// TODO: try with another contract than currency which is kind of managed in another way by nodeos
-// this require to create eosio account
 func TestChainAbi(t *testing.T) {
 
 	if common.Config.API_URL == "" {
