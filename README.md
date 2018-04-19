@@ -14,7 +14,7 @@ It wraps the nodeos RPC API and will offer a high level set of API to simplify t
 
 ### Current features ###
 
-*Chain API* (see rpc/chain.go)
+*Chain API* (see [rpc/chain.go](https://github.com/romainPellerin/eosgo-client/blob/master/rpc/chain.go))
 - get_info
 - get_block
 - get_account
@@ -26,7 +26,7 @@ It wraps the nodeos RPC API and will offer a high level set of API to simplify t
 - push_transactions
 - get_required_keys
 
-*Wallet API* (see rpc/wallet.go)
+*Wallet API* (see [rpc/wallet.go](https://github.com/romainPellerin/eosgo-client/blob/master/rpc/wallet.go))
 - wallet_create
 - wallet_open
 - wallet_lock
@@ -38,7 +38,7 @@ It wraps the nodeos RPC API and will offer a high level set of API to simplify t
 - wallet_set_timeout
 - wallet_sign_trx
 
-*EOSIO contracts* (see rpc/contracts.go)
+*EOSIO contracts* (see [rpc/contract.go](https://github.com/romainPellerin/eosgo-client/blob/master/rpc/contract.go))
 - newaccount
 
 ### How to start ###
@@ -58,9 +58,6 @@ Configure your own conf file (for exemple *test.conf*) based on *default.conf* o
     "WALLET_PRIV_KEY":"KEY"                     // your wallet private key
     "TRANSACTION_EXPIRATION_DELAY":30           // default 30 seconds
 ```
-
-Take a look at rpc/chain_test.go, rpc/wallet_test.go and rpc/contracts_test.go.
-
 Also, you have to create 2 environment vars in order to load your conf file (see default.conf), in your system:
 ```
 export EOSGO_PATH=/your_path/eosgo-client/.
@@ -70,3 +67,4 @@ or for your IDE (here for a Goland project):
 ```
 EOSGO_PATH=.;EOSGO_CONF=test
 ```
+Then, for example of uses, have a look to [rpc/chain_test.go](https://github.com/romainPellerin/eosgo-client/blob/master/rpc/chain_test.go), [rpc/wallet_test.go](https://github.com/romainPellerin/eosgo-client/blob/master/rpc/wallet_test.go) and [rpc/contract_test.go](https://github.com/romainPellerin/eosgo-client/blob/master/rpc/contract_test.go).
