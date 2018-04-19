@@ -59,7 +59,7 @@ Configure your own conf file (for exemple *test.conf*) based on *default.conf* o
     "TRANSACTION_EXPIRATION_DELAY":30           // default 30 seconds
 ```
 
-Take a look at rpc/chain_test.go, rpc/wallet_test.go and rpc/contracts_test.go. You will have to manually create some accounts to be able to run it.
+Take a look at rpc/chain_test.go, rpc/wallet_test.go and rpc/contracts_test.go.
 
 Also, you have to create 2 environment vars in order to load your conf file (see default.conf), in your system:
 ```
@@ -70,6 +70,3 @@ or for your IDE (here for a Goland project):
 ```
 EOSGO_PATH=.;EOSGO_CONF=test
 ```
-
-Currently working on standalone tests.
-
