@@ -1,8 +1,8 @@
 package common
 
 import (
-	"time"
 	"math/rand"
+	"time"
 )
 
 // generate an EOS compliant account name

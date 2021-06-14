@@ -12,9 +12,9 @@
 package rpc
 
 import (
-	"eosgo-client/model"
-	"eosgo-client/errors"
-	"eosgo-client/common"
+	"github.com/romainPellerin/eosgo-client/common"
+	"github.com/romainPellerin/eosgo-client/errors"
+	"github.com/romainPellerin/eosgo-client/model"
 )
 
 /**
