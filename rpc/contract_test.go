@@ -12,11 +12,11 @@
 package rpc
 
 import (
-	"testing"
-	"github.com/stretchr/testify/assert"
 	"fmt"
+	"github.com/romainPellerin/eosgo-client/common"
+	"github.com/stretchr/testify/assert"
 	"os"
-	"eosgo-client/common"
+	"testing"
 )
 
 func TContractConfig() {

@@ -12,8 +12,8 @@
 package common
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
 	"os"
 	"strconv"
 )

@@ -12,15 +12,15 @@
 package network
 
 import (
-	"testing"
-	"github.com/stretchr/testify/assert"
-	"fmt"
-	"eosgo-client/model"
 	"encoding/json"
-	"eosgo-client/common"
+	"fmt"
+	"github.com/romainPellerin/eosgo-client/common"
+	"github.com/romainPellerin/eosgo-client/model"
+	"github.com/stretchr/testify/assert"
 	"os"
-	"time"
 	"strconv"
+	"testing"
+	"time"
 )
 
 func THTTPConfig() {

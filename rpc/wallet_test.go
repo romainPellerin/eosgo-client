@@ -12,14 +12,14 @@
 package rpc
 
 import (
-	"testing"
-	"github.com/stretchr/testify/assert"
 	"fmt"
+	"github.com/romainPellerin/eosgo-client/common"
+	"github.com/romainPellerin/eosgo-client/errors"
+	"github.com/romainPellerin/eosgo-client/model"
+	"github.com/stretchr/testify/assert"
 	"os"
-	"eosgo-client/common"
+	"testing"
 	"time"
-	"eosgo-client/model"
-	"eosgo-client/errors"
 )
 
 var (

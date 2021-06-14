@@ -12,15 +12,15 @@
 package rpc
 
 import (
-	"eosgo-client/model"
-	"eosgo-client/common"
-	"eosgo-client/network"
-	"eosgo-client/errors"
 	"encoding/json"
-	"strings"
-	"strconv"
-	"time"
 	"fmt"
+	"github.com/romainPellerin/eosgo-client/common"
+	"github.com/romainPellerin/eosgo-client/errors"
+	"github.com/romainPellerin/eosgo-client/model"
+	"github.com/romainPellerin/eosgo-client/network"
+	"strconv"
+	"strings"
+	"time"
 )
 
 /**

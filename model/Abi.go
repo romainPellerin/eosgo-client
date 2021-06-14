@@ -12,8 +12,8 @@
 package model
 
 import (
-	"eosgo-client/errors"
 	"encoding/json"
+	"github.com/romainPellerin/eosgo-client/errors"
 )
 
 type Abi struct {

@@ -12,16 +12,16 @@
 package common
 
 import (
-	"github.com/rs/zerolog/log"
 	"context"
-	"github.com/rs/zerolog"
-	"eosgo-client/errors"
-	"log/syslog"
-	"io"
-	"os"
-	"fmt"
 	"encoding/json"
+	"fmt"
+	"github.com/romainPellerin/eosgo-client/errors"
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
+	"io"
+	"log/syslog"
 	"net/http"
+	"os"
 )
 
 const (
@@ -54,7 +54,7 @@ func Logger(module string, context context.Context) zerolog.Logger {
 
 	switch Config.LOGGING_MODE {
 	case MODE_CONSOLE:
-		writer = zerolog.ConsoleWriter{os.Stdout, false}
+		writer = zerolog.ConsoleWriter{Out: os.Stdout}
 		break
 
 	case MODE_SYSLOG:
@@ -66,7 +66,8 @@ func Logger(module string, context context.Context) zerolog.Logger {
 		panic("unable to register zerolog on syslog")
 	}
 
-	ctx := log.With().Timestamp().Str("module", module).Logger().Output(writer).WithContext(context)
+	output := log.With().Timestamp().Str("module", module).Logger().Output(writer)
+	ctx := output.WithContext(context)
 
 	return *log.Ctx(ctx);
 }

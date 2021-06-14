@@ -13,12 +13,12 @@ package network
 
 import (
 	"encoding/json"
-	"net/http"
-	"eosgo-client/errors"
-	"strings"
-	"io/ioutil"
-	"net/url"
 	"fmt"
+	"github.com/romainPellerin/eosgo-client/errors"
+	"io/ioutil"
+	"net/http"
+	"net/url"
+	"strings"
 )
 
 // simple HTTP GET request taking some URL params
